@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula Virtual CELCIT - Accesibilidad Universal</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            /* Paleta Pastel Tierra Suave */
+            --terracota: #e29578; 
+            --verde-oliva: #84a59d;
+            --marron-cuero: #6d597a;
+            --fondo-nube: #fdfaf7;
+            --blanco: #ffffff;
+            --texto: #354f52;
+            --azul-lectura: #0056b3;
+            --borde: rgba(0, 0, 0, 0.08);
+        }
+
+        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--fondo-nube); display: flex; color: var(--texto); height: 100vh; overflow: hidden; }
+
+        /* --- SIDEBAR --- */
+        nav.sidebar { width: 320px; background: var(--blanco); border-right: 1px solid var(--borde); display: flex; flex-direction: column; padding: 40px 0; z-index: 100; }
+        .sidebar-brand { padding: 0 40px 40px; }
+        .sidebar-brand h2 { color: var(--terracota); font-size: 24px; font-weight: 900; margin: 0; line-height: 0.9; letter-spacing: -1px; }
+
+        .nav-btn { background: none; border: none; padding: 18px 40px; color: #888; text-align: left; font-size: 13px; font-weight: 700; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 15px; border-left: 6px solid transparent; width: 100%; transition: 0.3s; }
+        .nav-btn i { width: 20px; height: 20px; }
+        .nav-btn.active { color: var(--texto); background: var(--fondo-nube); border-left-color: var(--terracota); font-weight: 900; }
+
+        /* --- CONTENIDO --- */
+        main { flex: 1; padding: 40px 60px; overflow-y: auto; scroll-behavior: smooth; }
+        .tab-content { display: none; max-width: 1100px; margin: auto; animation: slideUp 0.4s ease-out; }
+        .tab-content.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- LECTURA FÁCIL & AUDIO --- */
+        .btn-lf { display: flex; align-items: center; gap: 12px; background: var(--blanco); border: 2px solid var(--azul-lectura); color: var(--azul-lectura); padding: 10px 20px; border-radius: 15px; cursor: pointer; font-weight: 800; margin-bottom: 20px; transition: 0.3s; }
+        .btn-lf:hover { background: var(--azul-lectura); color: white; }
+        .lf-box { display: none; background: #e7f1ff; padding: 25px; border-radius: 20px; border-left: 10px solid var(--azul-lectura); margin-bottom: 25px; color: #000; }
+        
+        .audio-player { display: inline-flex; align-items: center; gap: 10px; background: var(--terracota); color: white; padding: 12px 20px; border-radius: 30px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 25px; }
+
+        /* --- BENTO CARDS --- */
+        .bento-card { padding: 40px; border-radius: 40px; background: var(--blanco); border: 1px solid var(--borde); box-shadow: 0 20px 40px rgba(0,0,0,0.04); margin-bottom: 30px; }
+        .grid-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 35px; }
+        .block { background: var(--fondo-nube); padding: 35px; border-radius: 30px; border: 1px solid var(--borde); line-height: 1.7; position: relative; }
+
+        /* --- HOJA DE RUTA INTERACTIVA --- */
+        .hoja-ruta-v3 { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        .ruta-caja-v3 { background: var(--blanco); border: 1px solid var(--borde); border-radius: 15px; overflow: hidden; }
+        .ruta-caja-v3 summary { padding: 15px 20px; list-style: none; display: flex; align-items: center; gap: 15px; font-weight: 800; cursor: pointer; background: #fdfdfd; }
+        .ruta-caja-v3 summary span { background: var(--terracota); color: white; padding: 5px 12px; border-radius: 8px; font-size: 0.9rem; }
+        .ruta-caja-v3[open] { border-color: var(--terracota); }
+        .resumen-ruta { padding: 15px 20px 15px 65px; font-size: 0.9rem; background: var(--blanco); border-top: 1px solid var(--borde); }
+
+        /* --- DOCENTE --- */
+        .perfil-docente-box { background: var(--blanco); padding: 25px; border-radius: 30px; border: 1px solid var(--borde); margin-top: 20px; }
+        .foto-docente { width: 90px; height: 90px; border-radius: 50%; background: #ddd; border: 4px solid var(--terracota); margin-bottom: 15px; }
+
+        /* --- VIDEOS --- */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 25px; border: 6px solid var(--verde-oliva); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* --- BOTONES ACCIÓN --- */
+        .btn-celcit { display: flex; align-items: center; justify-content: center; gap: 15px; padding: 20px; background: var(--marron-cuero); color: white; text-decoration: none; border-radius: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; transition: 0.3s; }
+        .btn-celcit:hover { transform: translateY(-5px); filter: brightness(1.2); }
+
+        /* --- EXAMEN --- */
+        .quiz-step { display: none; }
+        .quiz-step.active { display: block; animation: fadeIn 0.5s; }
+        .option-btn { display: block; width: 100%; padding: 20px; margin: 10px 0; background: var(--blanco); border: 2px solid var(--marron-cuero); border-radius: 15px; cursor: pointer; text-align: left; font-weight: bold; }
+        .option-btn:hover { background: var(--terracota); color: white; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-brand"><h2>CELCIT<br>VIRTUAL</h2></div>
+        <button class="nav-btn active" onclick="openTab(event, 'uso')"><i data-lucide="help-circle"></i> USO DE CAMPUS</button>
+        <button class="nav-btn" onclick="openTab(event, 'inicio')"><i data-lucide="layout-dashboard"></i> INICIO</button>
+        <button class="nav-btn" onclick="openTab(event, 'clase1')"><i data-lucide="book-open"></i> CLASE 1</button>
+        <button class="nav-btn" onclick="openTab(event, 'clase2')"><i data-lucide="book-open"></i> CLASE 2</button>
+        <button class="nav-btn" onclick="openTab(event, 'clase3')"><i data-lucide="book-open"></i> CLASE 3</button>
+        <button class="nav-btn" onclick="openTab(event, 'verificacion')"><i data-lucide="check-circle-2"></i> VERIFICACIÓN</button>
+    </nav>
+
+    <main>
+        <div id="uso" class="tab-content active">
+            <div class="bento-card">
+                <h1>Uso de Campus</h1>
+                <button class="btn-lf" onclick="toggleLF('lf-uso')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Logo_Lectura_F%C3%A1cil.svg/1200px-Logo_Lectura_F%C3%A1cil.svg.png" width="30">
+                    LECTURA FÁCIL: AYUDA TÉCNICA
+                </button>
+                <div id="lf-uso" class="lf-box">
+                    <p>• Mirá el video para aprender a usar el aula.<br>• Usá el menú de la izquierda para cambiar de clase.<br>• Si tenés dudas, leé las preguntas frecuentes abajo.</p>
+                </div>
+                <div class="grid-layout">
+                    <div class="block">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/khCrpueNUSg" title="Tutorial"></iframe>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <h3>Preguntas Frecuentes</h3>
+                        <details>
+                            <summary><i data-lucide="key"></i> ¿Cómo cambio mi clave?</summary>
+                            <p>En la entrada, seleccioná "Olvidé mi contraseña". Recibirás un mail para resetearla.</p>
+                        </details>
+                        <details>
+                            <summary><i data-lucide="smartphone"></i> ¿Funciona en el celu?</summary>
+                            <p>Sí, el diseño es responsivo y se adapta a cualquier pantalla.</p>
+                        </details>
+                        <details>
+                            <summary><i data-lucide="mail"></i> Contacto técnico</summary>
+                            <p>Escribinos a cursos@celcit.org.ar (Lunes a Viernes de 10 a 18 hs).</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="inicio" class="tab-content">
+            <div class="bento-card">
+                <h1>Bienvenidx al Taller</h1>
+                <button class="audio-player"><i data-lucide="volume-2"></i> ESCUCHAR TODA LA PRESENTACIÓN</button>
+                
+                <div class="grid-layout">
+                    <div class="block">
+                        <p><strong>Poéticas Teatrales con Perspectiva de Género.</strong> Lxs invitamos a desandar las estructuras binarias de la escena tradicional a través de un recorrido crítico y creativo situado.</p>
+                        
+                        <h3><i data-lucide="map"></i> Hoja de Ruta Interactiva</h3>
+                        <div class="hoja-ruta-v3">
+                            <details class="ruta-caja-v3">
+                                <summary><span>01</span> Uso de Campus</summary>
+                                <div class="resumen-ruta">Video tutorial accesible con LSA y guías de navegación.</div>
+                            </details>
+                            <details class="ruta-caja-v3">
+                                <summary><span>02</span> Género y Escena</summary>
+                                <div class="resumen-ruta">Tensionar la representación y el binarismo en la poética escénica.</div>
+                            </details>
+                            <details class="ruta-caja-v3">
+                                <summary><span>03</span> El Cuerpo Situado</summary>
+                                <div class="resumen-ruta">El cuerpo como territorio de disputa y creación colectiva.</div>
+                            </details>
+                            <details class="ruta-caja-v3">
+                                <summary><span>04</span> Cierre y Evaluación</summary>
+                                <div class="resumen-ruta">Proyecto final y verificación de los contenidos trabajados.</div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="block-side">
+                        <div class="video-container" style="border-color: var(--terracota); margin-bottom: 20px;">
+                            <div style="background:#222; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:white;">
+                                <span>VIDEO BIENVENIDA LSA</span>
+                            </div>
+                        </div>
+                        <div class="perfil-docente-box">
+                            <div class="foto-docente"></div>
+                            <strong>Claudia Quiroga</strong>
+                            <p style="font-size: 0.85rem; margin-top: 10px;">
+                                Claudia es directora teatral y artivista. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="clase1" class="tab-content">
+            <div class="bento-card">
+                <h1>Clase 1: Género y Escena</h1>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/khCrpueNUSg"></iframe>
+                </div>
+                <div class="grid-layout" style="margin-top:30px;">
+                    <div class="block">
+                        <p>Analizamos las poéticas de la representación. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.</p>
+                    </div>
+                    <div class="block-side">
+                        <a href="#" class="btn-celcit"><i data-lucide="file-text"></i> BIBLIOGRAFÍA PDF</a>
+                        <a href="#" class="btn-celcit" style="background:var(--verde-oliva);"><i data-lucide="message-square"></i> IR AL FORO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="clase2" class="tab-content">
+            <div class="bento-card">
+                <h1>Clase 2: El Cuerpo</h1>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/sN9o-9L8C-E"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="clase3" class="tab-content">
+            <div class="bento-card">
+                <h1>Clase 3: Poéticas Críticas</h1>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/e1VVy2nJyko"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="verificacion" class="tab-content">
+            <div class="bento-card">
+                <h1>Verificación de Contenidos</h1>
+                
+                <div id="q1" class="quiz-step active">
+                    <h3>Pregunta 1 de 6</h3>
+                    <p>Discapacidad no es una interseccionalidad a tener en cuenta.</p>
+                    <button class="option-btn" onclick="nextQ('q1', 'q2')">Verdadero</button>
+                    <button class="option-btn" onclick="nextQ('q1', 'q2')">Falso</button>
+                </div>
+
+                <div id="q2" class="quiz-step">
+                    <h3>Pregunta 2 de 6</h3>
+                    <p>La victimización y la martirización de los cuerpos en la escena son necesarios para hablar de las violencias en el teatro.</p>
+                    <button class="option-btn" onclick="nextQ('q2', 'q3')">Verdadero</button>
+                    <button class="option-btn" onclick="nextQ('q2', 'q3')">Falso</button>
+                </div>
+
+                <div id="q3" class="quiz-step">
+                    <h3>Pregunta 3 de 6</h3>
+                    <p>Los feminismos son:</p>
+                    <button class="option-btn" onclick="nextQ('q3', 'q4')">Movimientos que luchan por la igualdad de género.</button>
+                    <button class="option-btn" onclick="nextQ('q3', 'q4')">Lo opuesto al machismo.</button>
+                </div>
+
+                <div id="q4" class="quiz-step">
+                    <h3>Pregunta 4 de 6</h3>
+                    <p>“Si no nos corremos del binarismo... simplemente reproduzcamos violencias”. ¿Quién lo dijo?</p>
+                    <button class="option-btn" onclick="nextQ('q4', 'q5')">Cristina Escofet</button>
+                    <button class="option-btn" onclick="nextQ('q4', 'q5')">Rita Segato</button>
+                </div>
+
+                <div id="q5" class="quiz-step">
+                    <h3>Pregunta 5 de 6</h3>
+                    <p>El patriarcado se define como el orden social basado en un modo de dominación cuyo paradigma es la masculinidad hegemónica.</p>
+                    <button class="option-btn" onclick="nextQ('q5', 'q6')">Verdadero</button>
+                    <button class="option-btn" onclick="nextQ('q5', 'q6')">Falso</button>
+                </div>
+
+                <div id="q6" class="quiz-step">
+                    <h3>Pregunta 6 de 6</h3>
+                    <p>La Perspectiva de Género está fundada en la:</p>
+                    <button class="option-btn" onclick="finishQuiz()">Interseccionalidad y Diversidad</button>
+                    <button class="option-btn" onclick="finishQuiz()">Accesibilidad y Transversalidad</button>
+                    <button class="option-btn" onclick="finishQuiz()">Todas son verdaderas</button>
+                </div>
+
+                <div id="final" class="quiz-step">
+                    <h3>¡Tarea finalizada!</h3>
+                    <p>Has completado el recorrido de verificación.</p>
+                    <button class="btn-celcit" onclick="location.reload()">REINICIAR</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) tabcontent[i].classList.remove("active");
+            tablinks = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function toggleLF(id) {
+            var box = document.getElementById(id);
+            box.style.display = (box.style.display === "block") ? "none" : "block";
+        }
+
+        function nextQ(current, next) {
+            document.getElementById(current).classList.remove("active");
+            document.getElementById(next).classList.add("active");
+        }
+
+        function finishQuiz() {
+            document.getElementById('q6').classList.remove("active");
+            document.getElementById('final').classList.add("active");
+        }
+    </script>
+</body>
+</html>
