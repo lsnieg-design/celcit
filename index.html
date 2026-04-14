@@ -81,31 +81,68 @@
 
     <main>
         <div id="uso" class="tab-content active">
-            <div class="bento-card">
-                <h1>Uso de Campus</h1>
-                <button class="btn-lf" onclick="toggleLF('lf-uso')">
-                    <img src="logo-lectura-facil.jpg" width="30">
-                    LECTURA SENCILLA: AYUDA RÁPIDA
-                </button>
-                <div id="lf-uso" class="lf-box">
-                    <p>• Mirá el video para aprender a usar el aula.<br>• Usá el menú de la izquierda para cambiar de página.</p>
+    <div class="bento-card">
+        <div class="bento-header">
+            <h1>Uso de Campus</h1>
+            <i data-lucide="help-circle" style="color: var(--terracota); width: 40px; height: 40px;"></i>
+        </div>
+        
+        <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+            <button class="btn-lf" onclick="toggleLF('lf-uso-seccion')">
+                <img src="logo-lectura-facil.jpg" width="30" alt="Logo Lectura Fácil">
+                LECTURA SENCILLA: AYUDA RÁPIDA
+            </button>
+            <button class="audio-player" title="Escuchar narración tutorial">
+                <i data-lucide="volume-2"></i> ESCUCHAR NARRACIÓN TUTORIAL
+            </button>
+        </div>
+
+        <div id="lf-uso-seccion" class="lf-box">
+            <p><strong>• Video:</strong> Mirá el video para aprender a usar el sitio.<br>
+            <strong>• Menú:</strong> Usá los botones de la izquierda para ir a las clases.<br>
+            <strong>• Ayuda:</strong> Si tenés dudas, leé las preguntas frecuentes al final.</p>
+        </div>
+
+        <div class="grid-layout">
+            <div class="block">
+                <span class="drop-cap">¡B</span>ienvenidx a tu aula virtual. Este espacio del CELCIT fue diseñado bajo los principios de accesibilidad universal para que la tecnología sea un puente hacia tu creación teatral. 
+                <p style="margin-top: 20px;">En el video de la derecha, lxs facilitadores te explican cómo recorrer las clases, descargar lxs materiales bibliográficos y participar de los encuentros colectivos. Queremos que tu experiencia sea fluida y situada.</p>
+            </div>
+            <div class="block-side">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/khCrpueNUSg" title="Tutorial de Bienvenida y Uso del Campus"></iframe>
                 </div>
-                <div class="grid-layout">
-                    <div class="block">
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/khCrpueNUSg"></iframe>
-                        </div>
-                    </div>
-                    <div class="block">
-                        <h3>Dudas frecuentes</h3>
-                        <details>
-                            <summary><i data-lucide="help-circle"></i> ¿Cómo contacto al soporte?</summary>
-                            <p>Escribinos a cursos@celcit.org.ar</p>
-                        </details>
-                    </div>
+                <div style="text-align: center; margin-top: 12px; font-size: 0.9rem; color: var(--marron-cuero); font-weight: bold;">
+                    <i data-lucide="play-circle" style="vertical-align: middle; width: 16px;"></i> Video Tutorial: Bienvenida y Navegación
                 </div>
             </div>
         </div>
+
+        <div class="block" style="margin-top: 35px; border-color: var(--verde-oliva);">
+            <h3 style="display: flex; align-items: center; gap: 10px; margin-top: 0;">
+                <i data-lucide="message-square"></i> Preguntas Frecuentes (FAQ)
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                <details>
+                    <summary><i data-lucide="key"></i> ¿Cómo recupero mi clave?</summary>
+                    <p>En la pantalla de ingreso, hacé clic en "Olvidé mi contraseña". Te llegará un mail para crear una nueva de forma segura.</p>
+                </details>
+                <details>
+                    <summary><i data-lucide="smartphone"></i> ¿Puedo entrar desde el celular?</summary>
+                    <p>¡Claro! El campus es responsivo. Te recomendamos usar Chrome o Firefox para una mejor experiencia visual.</p>
+                </details>
+                <details>
+                    <summary><i data-lucide="download"></i> ¿Cómo bajo la bibliografía?</summary>
+                    <p>Dentro de cada clase verás el botón "Bibliografía PDF". Al tocarlo, el archivo se guardará en tu dispositivo.</p>
+                </details>
+                <details>
+                    <summary><i data-lucide="mail"></i> ¿Dónde pido ayuda técnica?</summary>
+                    <p>Escribinos a <strong>cursos@celcit.org.ar</strong>. Nuestro equipo técnico responde de lunes a viernes de 10 a 18 hs (Arg).</p>
+                </details>
+            </div>
+        </div>
+    </div>
+</div>
 
        <div id="inicio" class="tab-content">
     <div class="bento-card">
