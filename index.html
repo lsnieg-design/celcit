@@ -118,73 +118,50 @@
             </div>
         </div>
 
-       <div class="block" style="margin-top: 35px; border-color: var(--verde-oliva); background: var(--blanco);">
-    <h3 style="display: flex; align-items: center; gap: 12px; margin-top: 0; color: var(--marron-cuero);">
-        <i data-lucide="message-square"></i> Preguntas Frecuentes (FAQ)
+      <div class="block" style="margin-top: 35px; border-color: var(--verde-oliva); background: var(--blanco);">
+    
+    <div style="background: var(--fondo-nube); border: 2px dashed var(--verde-oliva); padding: 15px; border-radius: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px;">
+        <i data-lucide="mouse-pointer-2" style="color: var(--verde-oliva);"></i>
+        <p style="margin: 0; font-weight: 800; font-size: 0.9rem; color: var(--marron-cuero);">
+            INSTRUCCIÓN: Hacé clic sobre cualquier pregunta para leer la respuesta.
+        </p>
+    </div>
+
+    <h3 style="display: flex; align-items: center; gap: 12px; margin-top: 0; color: var(--marron-cuero); margin-bottom: 20px;">
+        <i data-lucide="message-square"></i> Preguntas Frecuentes
     </h3>
-    <p style="font-size: 0.9rem; color: var(--texto); opacity: 0.8; margin-bottom: 25px;">
-        Hacé clic sobre la pregunta para ver la respuesta. Podés usar el botón de parlante para escuchar cada solución.
-    </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+    <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
         
-        <details style="border-left: 5px solid var(--terracota);">
+        <details class="faq-desplegable">
             <summary><i data-lucide="key"></i> ¿Cómo recupero mi clave?</summary>
-            <div style="padding: 15px 5px;">
-                <button class="audio-player" style="margin-bottom: 10px; padding: 5px 12px; font-size: 11px;">
-                    <i data-lucide="volume-2" style="width: 14px;"></i> ESCUCHAR RESPUESTA
-                </button>
-                <p style="margin: 0; font-size: 0.95rem;">En la pantalla de ingreso, seleccioná <strong>"Olvidé mi contraseña"</strong>. Te llegará un mail automático con un link para crear una clave nueva y segura.</p>
+            <div class="faq-respuesta">
+                <button class="audio-player"><i data-lucide="volume-2"></i> ESCUCHAR</button>
+                <p>En la pantalla de ingreso, seleccioná <strong>"Olvidé mi contraseña"</strong>. Te llegará un mail para crear una nueva de forma segura.</p>
             </div>
         </details>
 
-        <details style="border-left: 5px solid var(--verde-oliva);">
+        <details class="faq-desplegable">
             <summary><i data-lucide="smartphone"></i> ¿Funciona en el celular?</summary>
-            <div style="padding: 15px 5px;">
-                <button class="audio-player" style="margin-bottom: 10px; padding: 5px 12px; font-size: 11px;">
-                    <i data-lucide="volume-2" style="width: 14px;"></i> ESCUCHAR RESPUESTA
-                </button>
-                <p style="margin: 0; font-size: 0.95rem;">¡Sí! El aula es <strong>responsiva</strong>. Podés cursar desde tu teléfono o tablet. Te recomendamos usar Google Chrome para una mejor visualización de lxs videos.</p>
+            <div class="faq-respuesta">
+                <button class="audio-player"><i data-lucide="volume-2"></i> ESCUCHAR</button>
+                <p>¡Sí! El aula se adapta a teléfonos y tablets. Te recomendamos usar Google Chrome para ver lxs videos sin problemas.</p>
             </div>
         </details>
 
-        <details style="border-left: 5px solid var(--marron-cuero);">
+        <details class="faq-desplegable">
             <summary><i data-lucide="download"></i> ¿Cómo bajo la bibliografía?</summary>
-            <div style="padding: 15px 5px;">
-                <button class="audio-player" style="margin-bottom: 10px; padding: 5px 12px; font-size: 11px;">
-                    <i data-lucide="volume-2" style="width: 14px;"></i> ESCUCHAR RESPUESTA
-                </button>
-                <p style="margin: 0; font-size: 0.95rem;">Dentro de cada clase, buscá el botón que dice <strong>"Bibliografía PDF"</strong>. Al tocarlo, el archivo se descargará automáticamente en tu carpeta de descargas.</p>
+            <div class="faq-respuesta">
+                <button class="audio-player"><i data-lucide="volume-2"></i> ESCUCHAR</button>
+                <p>En cada clase verás el botón <strong>"Bibliografía PDF"</strong>. Al tocarlo, el archivo se guardará en tu dispositivo.</p>
             </div>
         </details>
 
-        <details style="border-left: 5px solid var(--terracota);">
+        <details class="faq-desplegable">
             <summary><i data-lucide="mail"></i> ¿Dónde pido ayuda técnica?</summary>
-            <div style="padding: 15px 5px;">
-                <button class="audio-player" style="margin-bottom: 10px; padding: 5px 12px; font-size: 11px;">
-                    <i data-lucide="volume-2" style="width: 14px;"></i> ESCUCHAR RESPUESTA
-                </button>
-                <p style="margin: 0; font-size: 0.95rem;">Escribinos a <strong>cursos@celcit.org.ar</strong>. Nuestro equipo técnico responde de lunes a viernes, entre las 10 y las 18 horas de Argentina.</p>
-            </div>
-        </details>
-
-        <details style="border-left: 5px solid var(--verde-oliva);">
-            <summary><i data-lucide="help-circle"></i> ¿Cómo participo en el foro?</summary>
-            <div style="padding: 15px 5px;">
-                <button class="audio-player" style="margin-bottom: 10px; padding: 5px 12px; font-size: 11px;">
-                    <i data-lucide="volume-2" style="width: 14px;"></i> ESCUCHAR RESPUESTA
-                </button>
-                <p style="margin: 0; font-size: 0.95rem;">Entrá a la sección de la clase y buscá el botón <strong>"Ir al Foro"</strong>. Una vez adentro, hacé clic en "Responder" para dejar tu comentario o reflexión.</p>
-            </div>
-        </details>
-
-        <details style="border-left: 5px solid var(--marron-cuero);">
-            <summary><i data-lucide="check-circle-2"></i> ¿Cómo obtengo mi certificado?</summary>
-            <div style="padding: 15px 5px;">
-                <button class="audio-player" style="margin-bottom: 10px; padding: 5px 12px; font-size: 11px;">
-                    <i data-lucide="volume-2" style="width: 14px;"></i> ESCUCHAR RESPUESTA
-                </button>
-                <p style="margin: 0; font-size: 0.95rem;">Una vez que completes la <strong>Verificación de Contenidos</strong> al final del curso, se habilitará automáticamente el link para descargar tu certificado.</p>
+            <div class="faq-respuesta">
+                <button class="audio-player"><i data-lucide="volume-2"></i> ESCUCHAR</button>
+                <p>Escribinos a <strong>cursos@celcit.org.ar</strong>. Respondemos de lunes a viernes de 10 a 18 hs (Arg).</p>
             </div>
         </details>
 
@@ -192,23 +169,42 @@
 </div>
 
 <style>
-    /* Ajustes extra para claridad en las FAQ */
-    details summary {
-        transition: background 0.2s;
-        border-radius: 10px;
+    /* Estilos para que las preguntas se vean limpias */
+    .faq-desplegable {
+        background: var(--blanco);
+        border: 1px solid var(--borde);
+        border-radius: 12px;
+        transition: 0.3s;
     }
-    details summary:hover {
-        background: var(--fondo-nube);
+    .faq-desplegable summary {
+        padding: 18px 25px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-weight: 800;
+        cursor: pointer;
+        outline: none;
     }
-    details[open] summary {
+    .faq-desplegable[open] {
+        border-color: var(--terracota);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .faq-desplegable[open] summary {
         color: var(--terracota);
         border-bottom: 1px solid var(--borde);
-        border-radius: 10px 10px 0 0;
-        padding-bottom: 10px;
+    }
+    .faq-respuesta {
+        padding: 20px 25px;
+        background: var(--fondo-nube);
+        border-radius: 0 0 12px 12px;
+    }
+    .faq-respuesta button {
+        margin-bottom: 15px;
+        padding: 6px 15px;
+        font-size: 12px;
     }
 </style>
-    </div>
-</div>
 
        <div id="inicio" class="tab-content">
     <div class="bento-card">
