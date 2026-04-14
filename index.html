@@ -107,27 +107,91 @@
             </div>
         </div>
 
-        <div id="inicio" class="tab-content">
-            <div class="bento-card">
-                <h1>Inicio del Taller</h1>
-                <button class="audio-player"><i data-lucide="volume-2"></i> ESCUCHAR PRESENTACIÓN</button>
-                <div class="grid-layout">
-                    <div class="block">
-                        <p>Lxs invitamos a desandar las estructuras binarias de la escena tradicional. Un recorrido crítico y creativo situado en Latinoamérica.</p>
-                        <h3>Hoja de Ruta</h3>
-                        <div class="hoja-ruta-v3">
-                            <details class="ruta-caja-v3"><summary><span>01</span> Uso</summary><div class="resumen-ruta">Video tutorial accesible.</div></details>
-                            <details class="ruta-caja-v3"><summary><span>02</span> Género</summary><div class="resumen-ruta">Tensionar la representación.</div></details>
+       <div id="inicio" class="tab-content">
+    <div class="bento-card">
+        <div class="bento-header">
+            <h1>Bienvenidx al Trayecto</h1>
+            <i data-lucide="layout-dashboard" style="color: var(--terracota); width: 40px; height: 40px;"></i>
+        </div>
+
+        <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+            <button class="btn-lf" onclick="toggleLF('lf-inicio')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Logo_Lectura_F%C3%A1cil.svg/1200px-Logo_Lectura_F%C3%A1cil.svg.png" width="30" alt="Icono Lectura Fácil">
+                LECTURA FÁCIL: ¿CÓMO ES EL CURSO?
+            </button>
+            <button class="audio-player" title="Escuchar narración de esta página">
+                <i data-lucide="volume-2"></i> ESCUCHAR TODA LA PRESENTACIÓN
+            </button>
+        </div>
+
+        <div id="lf-inicio" class="lf-box">
+            <p><strong>• ¿Qué vamos a hacer?</strong> Aprender sobre teatro y género.<br>
+            <strong>• ¿Cómo?</strong> Mirando videos y leyendo textos.<br>
+            <strong>• ¿Quién nos enseña?</strong> La profesora Claudia Quiroga.</p>
+        </div>
+
+        <div class="grid-layout">
+            <div class="block">
+                <span class="drop-cap">E</span>n este espacio lxs invitamos a desandar las estructuras binarias de la escena tradicional. Proponemos una práctica situada donde el cuerpo y la metáfora son herramientas de transformación social.
+                
+                <h3 style="margin-top: 40px; color: var(--marron-cuero); display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="map"></i> HOJA DE RUTA DEL TALLER
+                </h3>
+                
+                <div class="hoja-ruta-v3">
+                    <details class="ruta-caja-v3">
+                        <summary><span>01</span> USO DE CAMPUS</summary>
+                        <div class="resumen-ruta">Video tutorial accesible con LSA y guías de navegación.</div>
+                    </details>
+                    <details class="ruta-caja-v3">
+                        <summary><span>02</span> GÉNERO Y ESCENA</summary>
+                        <div class="resumen-ruta">Tensionar la representación y el binarismo en la poética escénica.</div>
+                    </details>
+                    <details class="ruta-caja-v3">
+                        <summary><span>03</span> EL CUERPO SITUADO</summary>
+                        <div class="resumen-ruta">El cuerpo como territorio de disputa y creación colectiva.</div>
+                    </details>
+                    <details class="ruta-caja-v3">
+                        <summary><span>04</span> CIERRE Y EVALUACIÓN</summary>
+                        <div class="resumen-ruta">Proyecto final y verificación de lxs contenidos trabajadxs.</div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="block-side">
+                <div class="video-container" style="border-color: var(--terracota); margin-bottom: 25px;">
+                    <div style="background:#222; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white;">
+                        <i data-lucide="user-square-2" size="40" style="color: var(--terracota);"></i>
+                        <span style="font-size: 14px; margin-top:10px; font-weight:bold;">VIDEO BIENVENIDA LSA</span>
+                    </div>
+                </div>
+
+                <div class="perfil-docente-box">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div class="foto-docente"></div>
+                        <div>
+                            <strong style="font-size: 1.1rem;">Claudia Quiroga</strong><br>
+                            <small style="color: var(--terracota); font-weight: bold;">Artivista y Docente</small>
                         </div>
                     </div>
-                    <div class="block">
-                        <div style="width:80px; height:80px; border-radius:50%; background:#ccc; border:3px solid var(--terracota); margin-bottom:10px;"></div>
-                        <strong>Claudia Quiroga</strong>
-                        <p style="font-size:0.8rem;">Actriz, Directora y Artivista. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
+                    <p style="font-size: 0.9rem; line-height: 1.6;">
+                        Actriz, Directora Teatral y Dramaturga. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Claudia te acompañará en lxs foros de debate aportando su mirada situada.
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos específicos para la Hoja de Ruta interactiva */
+    .hoja-ruta-v3 { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+    .ruta-caja-v3 { background: var(--blanco); border: 1px solid var(--borde); border-radius: 15px; overflow: hidden; transition: 0.3s; }
+    .ruta-caja-v3 summary { padding: 15px 20px; list-style: none; display: flex; align-items: center; gap: 15px; font-weight: 800; cursor: pointer; background: #fdfdfd; }
+    .ruta-caja-v3 summary span { background: var(--terracota); color: white; padding: 5px 12px; border-radius: 8px; font-size: 0.9rem; }
+    .ruta-caja-v3[open] { border-color: var(--terracota); box-shadow: 0 5px 15px rgba(226, 149, 120, 0.1); }
+    .resumen-ruta { padding: 15px 20px 15px 65px; font-size: 0.9rem; color: var(--texto); background: var(--blanco); border-top: 1px solid var(--borde); }
+</style>
 
         <div id="clase1" class="tab-content">
             <div class="bento-card">
